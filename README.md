@@ -20,7 +20,7 @@ Chlorine-finder can detect different types of Credit card numbers, SSN, Phone Nu
 Maven dependency Definition:
 ```
    <dependency>
-      <groupId>com.dataapps</groupId>
+      <groupId>com.dataapps.chlorine</groupId>
       <artifactId>chlorine-finder</artifactId>
       <version>1.1.5</version>
    </dependency>

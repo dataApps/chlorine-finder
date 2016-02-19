@@ -11,7 +11,7 @@ Chlorine-finder can detect different types of Credit card numbers, SSN, Phone Nu
 
 ###To build chlorine:
 
-*mvn instal*
+*mvn install*
 
 ###To use Chlorine-finder
 

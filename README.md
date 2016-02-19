@@ -13,9 +13,9 @@ Chlorine-finder can detect different types of Credit card numbers, SSN, Phone Nu
 
 *mvn instal*
 
-###To use Chlorine-finder, 
+###To use Chlorine-finder
 
-1. add a dependency to Chlorine-finder library.
+- add a dependency to Chlorine-finder library.
 
 Maven dependency Definition:
 ```
@@ -25,7 +25,7 @@ Maven dependency Definition:
       <version>1.1.5</version>
    </dependency>
 ```
-2. Add the following lines of Code:
+- Add the following lines of Code:
 ```
  FinderEngine engine = new FinderEngine();
  List<String> matchedValues = engine.find ("Here is my id : chlorine-finder@testchlorine.com and my machine inf o:  124.234.223.12 , ok ?");
@@ -33,12 +33,12 @@ Maven dependency Definition:
  The matchedValues will contain the email Address chlorine-finder@testchlorine.com and the ip-address 124.234.223.12.
  If there are multiple sensitive elements, then all of them will be returned.
  
-  ###Further Documentation###
+  ###Further Documentation
   
   
-  ###Related projects###
+ ###Related projects
  
- ###Java Docs###
+ ###Java Docs
  
 
  

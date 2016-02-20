@@ -22,7 +22,7 @@
 		<enabled>true</enabled>
 	</finder>
 	<finder>
-		<class>com.dataapps.chlorine.pattern.CompositeCreditCardFinder
+		<class>io.dataapps.chlorine.pattern.CompositeCreditCardFinder
 		</class>
 		<enabled>true</enabled>
 	</finder>

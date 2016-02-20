@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dataapps.chlorine.pattern;
+package io.dataapps.chlorine.pattern;
 
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.dataapps.chlorine.finder.Finder;
+import io.dataapps.chlorine.finder.Finder;
 
 public class RegexFinder implements Finder {
 	static final Log LOG = LogFactory.getLog(RegexFinder.class);

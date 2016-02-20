@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dataapps.chlorine.finder;
+package io.dataapps.chlorine.finder;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,10 +24,10 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.dataapps.chlorine.finder.Finder;
-import com.dataapps.chlorine.finder.FinderEngine;
-import com.dataapps.chlorine.finder.FinderProvider;
-import com.dataapps.chlorine.pattern.RegexFinder;
+import io.dataapps.chlorine.finder.Finder;
+import io.dataapps.chlorine.finder.FinderEngine;
+import io.dataapps.chlorine.finder.FinderProvider;
+import io.dataapps.chlorine.pattern.RegexFinder;
 
 public class TestAddFinders {
 	private static String TEXT_PART1 = "text containing some stuff - ";

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dataapps.chlorine.pattern;
+package io.dataapps.chlorine.pattern;
 
 import java.util.Collection;
 import java.util.List;
 
-import com.dataapps.chlorine.finder.CompositeFinder;
-import com.dataapps.chlorine.finder.Finder;
+import io.dataapps.chlorine.finder.CompositeFinder;
+import io.dataapps.chlorine.finder.Finder;
 
 public class CompositeCreditCardFinder implements Finder {
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dataapps.chlorine.pattern;
+package io.dataapps.chlorine.pattern;
 
 import java.util.ArrayList;
 import java.util.Collection;

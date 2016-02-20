@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dataapps.chlorine.finder;
+package io.dataapps.chlorine.finder;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.dataapps.chlorine.pattern.RegexFinder;
+import io.dataapps.chlorine.pattern.RegexFinder;
 
 /**
  * The default FinderProvider looks up finders.xml in the classpath.

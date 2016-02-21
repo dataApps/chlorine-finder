@@ -5,11 +5,11 @@ Chlorine-finder is an open source library to detect sensitive elements in text. 
 Chlorine-finder can detect different types of Credit card numbers, SSN, Phone Numbers, email adddresses, Ip Addresses, Street Addresses and more. 
 
 
-###To Download source code :
+###To Download source code
 
 *git clone https://github.com/dataApps/chlorine-finder.git*
 
-###To build chlorine:
+###To build chlorine
 
 *mvn install*
 
@@ -17,7 +17,7 @@ Chlorine-finder can detect different types of Credit card numbers, SSN, Phone Nu
 
 - Add a dependency to Chlorine-finder library.
 
-Maven dependency Definition:
+Maven dependency Definition
 ```
    <dependency>
       <groupId>io.dataapps.chlorine</groupId>

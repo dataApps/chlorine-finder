@@ -32,59 +32,102 @@ public class CompositeFinder implements Finder {
 	private String name;
 	private List<Finder> finders = new ArrayList<>();
 
+	/**
+	 * Create a CompositeFinder.
+	 * @param name
+	 */
 	public CompositeFinder(String name) {
 		this.name = name;
 	}
 
-	public List<Finder> getFinders() {
-		return finders;
-	}
-
-	public void setFinders(List<Finder> finders) {
-		this.finders = finders;
-	}
-
+	/**
+	 * set the name.
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Get name of the Finder.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Set a list of Finders on the CompositeFInder
+	 * @param finders
+	 */
+	public void setFinders(List<Finder> finders) {
+		this.finders = finders;
+	}
+
+	/**
+	 * Get a list of all finders associated with the CompositeFinder.
+	 * @return All Finders associated with the CompositeFinder.
+	 */
+	public List<Finder> getFinders() {
+		return finders;
+	}
+
+	/**
+	 * add a Finder to the CompositeFinder
+	 * @param finder
+	 */
 	public void add(Finder finder) {
 		finders.add(finder);
 	}
-	
-	public List<String> find(Collection<String> samples) {
+
+	/**
+	 * Scan the input using the finders.
+	 * Return a list of actual matched values.
+	 * @return a list of matches 
+	 */
+	public List<String> find(String input) {
 		List<String> list = new ArrayList<>();
 		for (Finder finder : finders) {
-			list.addAll(finder.find(samples));
+			list.addAll(finder.find(input));
 		}
 		return list;
 	}
 
-	public List<String> find(String sample) {
+	/**
+	 * Scan the list of inputs using the finders.
+	 * Return a list of actual matched values.
+	 * @return a list of matches 
+	 */
+	public List<String> find(Collection<String> inputs) {
 		List<String> list = new ArrayList<>();
 		for (Finder finder : finders) {
-			list.addAll(finder.find(sample));
+			list.addAll(finder.find(inputs));
 		}
 		return list;
 	}
 
-	public Map<String, List<String>> findWithType(List<String> samples) {
+	/**
+	 * Scan the list of inputs using the finders.
+	 * Return a map of finder to actual matched values.
+	 * @return a map of finder to the corresponding matches. 
+	 */
+	public Map<String, List<String>> findWithType(String input) {
 		Map<String, List<String>> map = new HashMap<>();
 		for (Finder finder : finders) {
-			List<String> matches = finder.find(samples);
+			List<String> matches = finder.find(input);
 			addToMap(map, finder, matches);
 		}
 		return map;
 	}
 
-	public Map<String, List<String>> findWithType(String sample) {
+	/**
+	 * Scan the list of inputs using the finders.
+	 * Return a map of finder to actual matched values.
+	 * @return a map of finder to the corresponding matches. 
+	 */
+	public Map<String, List<String>> findWithType(List<String> inputs) {
 		Map<String, List<String>> map = new HashMap<>();
 		for (Finder finder : finders) {
-			List<String> matches = finder.find(sample);
+			List<String> matches = finder.find(inputs);
 			addToMap(map, finder, matches);
 		}
 		return map;

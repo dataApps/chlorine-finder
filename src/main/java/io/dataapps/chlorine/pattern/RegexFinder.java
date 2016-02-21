@@ -33,54 +33,90 @@ public class RegexFinder implements Finder {
 			Pattern.CANON_EQ | Pattern.CASE_INSENSITIVE | Pattern.MULTILINE;
 
 	private String name;
-    Pattern pattern;
-    
-    public RegexFinder () {}
+	Pattern pattern;
 
-	public RegexFinder (String name, String pattern) {
+	public RegexFinder() {}
+
+	/**
+	 * Construct a Regular expression Based Finder using a pattern and default flags.
+	 * @param name - name of the Finder
+	 * @param pattern - pattern of the regular expression.
+	 */
+	public RegexFinder(String name, String pattern) {
 		this(name, pattern,DEFAULT_FLAGS);
 	}
-	
-	public RegexFinder (String name, String pattern, int flags) {
+
+	/**
+	 * Construct a Regular expression Based Finder using pattern and flags.
+	 * @param name - name of the Finder
+	 * @param pattern - pattern of the regular expression.
+	 * @param flags - Flags to be used while compiling the pattern.
+	 */
+	public RegexFinder(String name, String pattern, int flags) {
 		this.name = name;
 		this.pattern = Pattern.compile(pattern, flags);
 	}
 
-	public List<String> find( Collection<String> samples) {
-		List<String> matches = new ArrayList<>();
-		for (String sample : samples) {
-			matches.addAll(find (sample));
-		}
-		return matches;
+	/**
+	 * set the name of the Finder
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public List<String> find(String sample) {
-		List<String> matches = new ArrayList<>();
-		Matcher matcher = pattern.matcher(sample);
-		while (matcher.find()) {
-			matches.add(removeCommas(
-					sample.substring(matcher.start(), matcher.end())).trim());
-		}
-		return matches;
-	}
-
+	/**
+	 * get Finder's name.
+	 */
 	public String getName() {
 		return name;
 	}
 
-	public Pattern getPattern() {
-		return pattern;
-	}
-
+	/**
+	 * set the Pattern
+	 * @param pattern
+	 */
 	public void setPattern(Pattern pattern) {
 		this.pattern = pattern;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	/**
+	 * Get Pattern.
+	 * @return
+	 */
+	public Pattern getPattern() {
+		return pattern;
 	}
-	
-	public static String removeCommas(String match) {
+
+	/**
+	 * Scan the input using the pattern.
+	 * Return a list of actual matched values.
+	 * @return a list of matches 
+	 */
+	public List<String> find( Collection<String> inputs) {
+		List<String> matches = new ArrayList<>();
+		for (String input : inputs) {
+			matches.addAll(find (input));
+		}
+		return matches;
+	}
+
+	/**
+	 * Scan the list of inputs using the finders.
+	 * Return a list of actual matched values.
+	 * @return a list of matches 
+	 */
+	public List<String> find(String input) {
+		List<String> matches = new ArrayList<>();
+		Matcher matcher = pattern.matcher(input);
+		while (matcher.find()) {
+			matches.add(removeCommas(
+					input.substring(matcher.start(), matcher.end())).trim());
+		}
+		return matches;
+	}
+
+	static String removeCommas(String match) {
 		if (match.endsWith(",")) {
 			match = match.substring(0, match.length() - 1);
 		}

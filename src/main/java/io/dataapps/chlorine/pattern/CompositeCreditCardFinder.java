@@ -25,6 +25,12 @@ public class CompositeCreditCardFinder implements Finder {
 
 	private CompositeFinder compositeFinder;
 
+	/**
+	 * Build a Composite CreditCardFinder using a multiple CreditCardFinders
+	 * Each CreditCardFinder has patterns to identify different 
+	 * Credit Card types like Visa, MasterCard etc.
+	 *
+	 */
 	public CompositeCreditCardFinder () {
 		compositeFinder = new CompositeFinder("Credit Card");
 		String START_BLOCK = "([^\\d\\.-]|^)"; 

@@ -33,12 +33,14 @@ Maven dependency Definition:
  The matchedValues will contain the email Address chlorine-finder@testchlorine.com and the ip-address 124.234.223.12.
  If there are multiple sensitive elements, then all of them will be returned.
  
-  ###Further Documentation
+###Further Documentation
+[Adding custom Finders](https://github.com/dataApps/chlorine-finder/CustomFinders.md)
+[Available Finders](https://github.com/dataApps/chlorine-finder/blob/master/src/main/resources/finders_default.xml)
   
-  
- ###Related projects
+###Related projects
  
- ###Java Docs
+###Java Docs
+The java docs for chlorine-finder are available [here](https://dataApps.io/files/chlorine-finder/javadoc/index.html).
  
 
  

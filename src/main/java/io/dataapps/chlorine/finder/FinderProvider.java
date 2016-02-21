@@ -16,7 +16,7 @@
 package io.dataapps.chlorine.finder;
 
 import java.util.List;
-/*
+/**
  * A provider for Finders.
  * DefaultFinderProvider provides finders read from finders.xml
  */

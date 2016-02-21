@@ -82,7 +82,6 @@ public class RegexFinder implements Finder {
 
 	/**
 	 * Get Pattern.
-	 * @return
 	 */
 	public Pattern getPattern() {
 		return pattern;

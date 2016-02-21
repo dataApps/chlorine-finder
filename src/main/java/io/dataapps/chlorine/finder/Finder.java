@@ -34,17 +34,17 @@ public interface Finder {
   
   /**
    * Accepts a collection of input values and 
-   * returns a collection of sensitive values found in the inputs.
-   * @param fields
-   * @return
+   * returns a List of sensitive values found in the inputs.
+   * @param inputs - collection of inputs to be scanned.
+   * @return List of sensitive values
    */
   public List<String> find(Collection<String> inputs);
   
   /**
    * Accepts an input value and 
    * returns a collection of sensitive values found in the inputs.
-   * @param input
-   * @return
+   * @param input - String to be scanned.
+   * @return List of sensitive values
    */
   public List<String> find(String input);
 

@@ -15,7 +15,7 @@ Chlorine-finder can detect different types of Credit card numbers, SSN, Phone Nu
 
 ###To use Chlorine-finder
 
-- add a dependency to Chlorine-finder library.
+- Add a dependency to Chlorine-finder library.
 
 Maven dependency Definition:
 ```
@@ -34,8 +34,8 @@ Maven dependency Definition:
  If there are multiple sensitive elements, then all of them will be returned.
  
 ###Further Documentation
-[Adding custom Finders](https://github.com/dataApps/chlorine-finder/CustomFinders.md)
-[Available Finders](https://github.com/dataApps/chlorine-finder/blob/master/src/main/resources/finders_default.xml)
+- [Adding custom Finders](https://github.com/dataApps/chlorine-finder/CustomFinders.md)
+- [Available Finders](https://github.com/dataApps/chlorine-finder/blob/master/src/main/resources/finders_default.xml)
   
 ###Related projects
  

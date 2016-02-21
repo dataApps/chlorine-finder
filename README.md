@@ -40,8 +40,7 @@ Chlorine-finder internally uses a set of Finders to perform detection. The Finde
 The latest chlorine-finder library can be downloaded [here](https://dataapps.io/chlorine.html#Opensource).
  
 ###Further Documentation
-- [Adding custom Finders](https://github.com/dataApps/chlorine-finder/CustomFinders.md)
-- [Available Finders](https://github.com/dataApps/chlorine-finder/blob/master/src/main/resources/finders_default.xml)
+[chlorine-finder wiki](https://github.com/dataApps/chlorine-finder/wiki)
   
 ###Related projects
  

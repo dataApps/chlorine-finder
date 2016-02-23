@@ -53,7 +53,7 @@ We welcome all contributions. You can contribute features, enhancements, bug fix
 
     Fork it
     Create your feature branch (git checkout -b my-new-feature)
-    Take a look at the [current issues](https://github.com/dataApps/chlorine-finder/issues).
+    Take a look at the issues
     Commit your changes (git commit -am 'Add some feature')
     Push to the branch (git push origin my-new-feature)
     Create new Pull Request

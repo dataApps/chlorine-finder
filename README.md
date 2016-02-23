@@ -45,7 +45,7 @@ The latest chlorine-finder library can be downloaded [here](https://dataapps.io/
 ###Related projects
  
 ###Java Docs
-The java docs for chlorine-finder are available [here](https://dataApps.io/files/chlorine-finder/javadoc/index.html).
+The java docs for chlorine-finder are available [here](https://d).ataApps.io/files/chlorine-finder/javadoc/index.html).
 
 We welcome all contributions. You can contribute features, enhancements, bug fixes or new Finders.
 
@@ -53,9 +53,11 @@ We welcome all contributions. You can contribute features, enhancements, bug fix
 
     Fork it
     Create your feature branch (git checkout -b my-new-feature)
+    Take a look at the [current issues](https://github.com/dataApps/chlorine-finder/issues).
     Commit your changes (git commit -am 'Add some feature')
     Push to the branch (git push origin my-new-feature)
     Create new Pull Request
+    
  
 
  

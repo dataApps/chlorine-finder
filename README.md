@@ -9,7 +9,7 @@ Chlorine-finder can detect different types of Credit card numbers, SSN, Phone Nu
 
 *git clone https://github.com/dataApps/chlorine-finder.git*
 
-###To build chlorine
+###To build chlorine-finder
 
 *mvn install*
 

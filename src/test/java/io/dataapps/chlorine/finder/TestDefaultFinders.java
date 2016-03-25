@@ -113,8 +113,13 @@ public class TestDefaultFinders {
 
 	private static String[] testBadStrings = new String[] {USPHONE3, USPHONE4, IP3, ADDRESS3};
 
-
 	private static String PLAIN_TEXT = "text containing no sensitive elements";
+	
+	private static  String multipleEmails = EMAIL1 + "," + EMAIL2;
+	
+	private static  String multipleCreditCards =  "a"+ MASTERCARD2 + "," + AMEXCARD1 + " ";
+
+
 
 	@Test
 	public void testFinders () {
@@ -205,7 +210,25 @@ public class TestDefaultFinders {
 	@Test 
 	public void testDisabledFinders () {
 		FinderEngine engine = new FinderEngine();
-		List<String> results = engine.find( TEXT_PART1 + ZIP1);
+		List<String> results = engine.find(TEXT_PART1 + ZIP1);
 		assertEquals (ZIP1 + " is  found. ", 0, results.size());
+	}
+	
+	@Test 
+	public void testMultipleEmailsWithCommas () {
+		FinderEngine engine = new FinderEngine();
+		List<String> results = engine.find(multipleEmails);
+		assertEquals (2, results.size());
+		assertTrue(results.contains(EMAIL1));
+		assertTrue(results.contains(EMAIL2));
+	}
+	
+	@Test 
+	public void testMultipleCreditCardssWithCommas () {
+		FinderEngine engine = new FinderEngine();
+		List<String> results = engine.find(multipleCreditCards);
+		assertEquals (2, results.size());
+		assertTrue(results.contains(MASTERCARD2));
+		assertTrue(results.contains(AMEXCARD1));
 	}
 }

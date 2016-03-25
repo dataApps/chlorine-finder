@@ -71,7 +71,7 @@ public class TestAddFinders {
 
 		public DummyFinderProvider() {
 			Finder reservedWordFinder = new RegexFinder("Reserved Word Finder" ,
-					"(\\D|^)\\b(?:class|interface|void|static|public|private)\\b(\\D|$)");
+					"\\b(?:class|interface|void|static|public|private)\\b");
 			SantaClaraZipCodeFinder scZipFinder = new SantaClaraZipCodeFinder();
 			finders.add(scZipFinder);
 			finders.add(reservedWordFinder);
@@ -109,7 +109,7 @@ public class TestAddFinders {
 		List<Finder> lstFinders = new ArrayList<>();
 		Finder scFinder = new SantaClaraZipCodeFinder();
 		Finder reservedWordFinder = new RegexFinder("Reserved Word Finder" ,
-				"(\\D|^)\\b(?:class|interface|void|static|public|private)\\b(\\D|$)");
+				"\\b(?:class|interface|void|static|public|private)\\b");
 		lstFinders.add(reservedWordFinder);
 		lstFinders.add(scFinder);
 		

@@ -41,7 +41,6 @@ public class CreditCardFinder extends RegexFinder {
 		while (matcher.find()) {
 
 			String match = sample.substring(matcher.start()+1, matcher.end()-1);
-			match = removeCommas(match).trim();
 
 			if (postMatchCheck(match)) {
 				matches.add(match);

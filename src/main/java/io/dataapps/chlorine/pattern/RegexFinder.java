@@ -110,7 +110,7 @@ public class RegexFinder implements Finder {
 		Matcher matcher = pattern.matcher(input);
 		while (matcher.find()) {
 			matches.add(removeCommas(
-					input.substring(matcher.start(), matcher.end())).trim());
+					input.substring(matcher.start(), matcher.end())));
 		}
 		return matches;
 	}

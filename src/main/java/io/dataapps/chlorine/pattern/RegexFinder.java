@@ -26,6 +26,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import io.dataapps.chlorine.finder.Finder;
+import io.dataapps.chlorine.finder.FinderResponse;
 
 public class RegexFinder implements Finder {
 	static final Log LOG = LogFactory.getLog(RegexFinder.class);
@@ -109,8 +110,7 @@ public class RegexFinder implements Finder {
 		List<String> matches = new ArrayList<>();
 		Matcher matcher = pattern.matcher(input);
 		while (matcher.find()) {
-			matches.add(removeCommas(
-					input.substring(matcher.start(), matcher.end())));
+			matches.add(input.substring(matcher.start(), matcher.end()));
 		}
 		return matches;
 	}

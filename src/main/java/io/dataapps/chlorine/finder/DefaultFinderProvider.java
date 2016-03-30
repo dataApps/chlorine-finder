@@ -15,11 +15,11 @@
  */
 package io.dataapps.chlorine.finder;
 
+import io.dataapps.chlorine.pattern.RegexFinder;
+
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -29,8 +29,6 @@ import org.apache.commons.logging.LogFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import io.dataapps.chlorine.pattern.RegexFinder;
 
 /**
  * The default FinderProvider looks up finders.xml in the classpath.
@@ -64,15 +62,7 @@ import io.dataapps.chlorine.pattern.RegexFinder;
 public class DefaultFinderProvider  implements FinderProvider {
 	public static final String FINDERS_DEFAULT_XML = "finders_default.xml";
 	private static final Log LOG = LogFactory.getLog(DefaultFinderProvider.class);
-	private static final Set<String> FIXED_FINDER_ELEMENTS = new HashSet <>();
-	static {
-		FIXED_FINDER_ELEMENTS.add("FINDERS");
-		FIXED_FINDER_ELEMENTS.add("NAME");
-		FIXED_FINDER_ELEMENTS.add("PATTERN");
-		FIXED_FINDER_ELEMENTS.add("CLASS");
-		FIXED_FINDER_ELEMENTS.add("FLAGS");
-		FIXED_FINDER_ELEMENTS.add("ENABLED");
-	}
+	
 
 	List<Finder> finders = new ArrayList<> ();
 	boolean ignoreEnabledFlag = false;
@@ -141,8 +131,7 @@ public class DefaultFinderProvider  implements FinderProvider {
 						bFlags = false; flags = Integer.parseInt(strFlags.trim());
 					} else if (qName.equalsIgnoreCase("ENABLED")) {
 						bEnabled = false; enabled = Boolean.parseBoolean(strEnabled.trim());
-					} else if (qName.equalsIgnoreCase("FINDERS")) {
-					} else {
+					} else if (qName.equalsIgnoreCase("FINDER")) {
 						if (ignoreEnabledFlag  || enabled) {
 							if (!className.isEmpty()) {
 								try {
@@ -189,7 +178,7 @@ public class DefaultFinderProvider  implements FinderProvider {
 			saxParser.parse(in, handler);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 	}
 

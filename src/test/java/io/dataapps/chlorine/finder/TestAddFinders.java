@@ -16,6 +16,8 @@
 package io.dataapps.chlorine.finder;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import io.dataapps.chlorine.pattern.RegexFinder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,11 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
-
-import io.dataapps.chlorine.finder.Finder;
-import io.dataapps.chlorine.finder.FinderEngine;
-import io.dataapps.chlorine.finder.FinderProvider;
-import io.dataapps.chlorine.pattern.RegexFinder;
 
 public class TestAddFinders {
 	private static String TEXT_PART1 = "text containing some stuff - ";
@@ -91,7 +88,7 @@ public class TestAddFinders {
 		engine.add(scFinder);
 		
 		List<String> matches = engine.find(TEXT_PART1 + "b@b.com" + TEXT_PART2);
-		assertEquals(1, matches.size());
+		assertTrue(matches.size()>1);
 		assertEquals("b@b.com", matches.get(0));
 		matches = engine.find(TEXT_PART1 + "95050" + TEXT_PART2);
 		assertEquals(1, matches.size());

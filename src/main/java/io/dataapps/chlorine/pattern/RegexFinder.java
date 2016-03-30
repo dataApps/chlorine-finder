@@ -16,6 +16,9 @@
 package io.dataapps.chlorine.pattern;
 
 
+import io.dataapps.chlorine.finder.Finder;
+import io.dataapps.chlorine.mask.Replacer;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,17 +28,14 @@ import java.util.regex.Pattern;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import io.dataapps.chlorine.finder.Finder;
-import io.dataapps.chlorine.finder.FinderResponse;
-
-public class RegexFinder implements Finder {
+public class RegexFinder implements Finder, Replacer {
 	static final Log LOG = LogFactory.getLog(RegexFinder.class);
 	public static final int DEFAULT_FLAGS = 
 			Pattern.CANON_EQ | Pattern.CASE_INSENSITIVE | Pattern.MULTILINE;
 
 	private String name;
 	Pattern pattern;
-
+	
 	public RegexFinder() {}
 
 	/**
@@ -124,4 +124,11 @@ public class RegexFinder implements Finder {
 		}
 		return match;
 	}
+
+	@Override
+	public String replace(String input, String replacement) {
+		Matcher matcher = pattern.matcher(input);
+		return matcher.replaceAll(replacement);
+	}
+
 }

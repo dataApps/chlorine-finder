@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--  
-  Copyright 2016, DataApps Corporation (http://dataApps.io) .
-  
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
- 
-    http://www.apache.org/licenses/LICENSE-2.0
- 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
+<!-- Copyright 2016, DataApps Corporation (http://dataApps.io) . Licensed 
+	under the Apache License, Version 2.0 (the "License"); you may not use this 
+	file except in compliance with the License. You may obtain a copy of the 
+	License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by 
+	applicable law or agreed to in writing, software distributed under the License 
+	is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY 
+	KIND, either express or implied. See the License for the specific language 
+	governing permissions and limitations under the License. -->
 <finders>
 	<finder>
 		<name>Email</name>
@@ -27,7 +20,7 @@
 		<enabled>true</enabled>
 	</finder>
 	<finder>
-		<name>US Phone#Formatted</name>
+		<name>USPhone-Formatted</name>
 		<pattern>[\()\.]*[0-9]{3}[\)\ \-\.]{1,2}[0-9]{3}[\-\ \.][0-9]{4}
 		</pattern>
 		<enabled>true</enabled>
@@ -39,8 +32,9 @@
 		<enabled>true</enabled>
 	</finder>
 	<finder>
-		<name>Street Address</name>
-		<pattern>\d+(\s[A-Z0-9\.]+?){1,3}\s(RD|ROAD|DR|DRIVE|AVE|AVENUE|APT|APARTMENT|PL|PLACE|ST|STREET)
+		<name>StreetAddress</name>
+		<pattern>
+			\d+(\s[A-Z0-9\.]+?){1,3}\s(RD|ROAD|DR|DRIVE|AVE|AVENUE|APT|APARTMENT|PL|PLACE|ST|STREET)
 		</pattern>
 		<flags>10</flags>
 		<enabled>true</enabled>
@@ -56,9 +50,16 @@
 		<enabled>true</enabled>
 	</finder>
 	<finder>
-		<name>ZipCode</name>
-		<pattern>\b[0-9]{5}(?:-[0-9]{4})?\b</pattern>
-		<enabled>false</enabled>
+		<name>IPV6</name>
+		<pattern><![CDATA[\b(?:(?:(?:[A-F0-9]{1,4}:){6}|(?=(?:[A-F0-9]{0,4}:){0,6}(?:[0-9]{1,3}\.){3}[0-9]{1,3}(?![:.\w]))(([0-9A-F]{1,4}:){0,5}|:)((:[0-9A-F]{1,4}){1,5}:|:)|::(?:[A-F0-9]{1,4}:){5})(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}|(?=(?:[A-F0-9]{0,4}:){0,7}[A-F0-9]{0,4}(?![:.\w]))(([0-9A-F]{1,4}:){1,7}|:)((:[0-9A-F]{1,4}){1,7}|:)|(?:[A-F0-9]{1,4}:){7}:|:(:[A-F0-9]{1,4}){7})(?![:.\w])\b]]>
+		</pattern>
+		<enabled>true</enabled>
+	</finder>
+	<finder>
+		<name>Hostname</name>
+		<pattern>\b(([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])\.)+([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])\b
+		</pattern>
+		<enabled>true</enabled>
 	</finder>
 	<finder>
 		<name>URL</name>
@@ -66,10 +67,15 @@
 		</pattern>
 		<enabled>false</enabled>
 	</finder>
-	<finder>
-		<name>IPV6</name>
-		<pattern><![CDATA[\b(?:(?:(?:[A-F0-9]{1,4}:){6}|(?=(?:[A-F0-9]{0,4}:){0,6}(?:[0-9]{1,3}\.){3}[0-9]{1,3}(?![:.\w]))(([0-9A-F]{1,4}:){0,5}|:)((:[0-9A-F]{1,4}){1,5}:|:)|::(?:[A-F0-9]{1,4}:){5})(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}|(?=(?:[A-F0-9]{0,4}:){0,7}[A-F0-9]{0,4}(?![:.\w]))(([0-9A-F]{1,4}:){1,7}|:)((:[0-9A-F]{1,4}){1,7}|:)|(?:[A-F0-9]{1,4}:){7}:|:(:[A-F0-9]{1,4}){7})(?![:.\w])\b]]>
-		</pattern>
+		<finder>
+		<name>ZipCode</name>
+		<pattern>\b[0-9]{5}(?:-[0-9]{4})?\b</pattern>
 		<enabled>false</enabled>
 	</finder>
+		<finder>
+		<name>UKPhoneNumber</name>
+		<pattern>^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$</pattern>
+		<enabled>false</enabled>
+	</finder>
+	
 </finders>

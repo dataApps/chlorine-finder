@@ -15,15 +15,13 @@
  */
 package io.dataapps.chlorine.finder;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
-
-import io.dataapps.chlorine.finder.Finder;
-import io.dataapps.chlorine.finder.FinderEngine;
 
 public class TestDefaultFinders {
 
@@ -61,7 +59,6 @@ public class TestDefaultFinders {
 	//ips
 	private static String IP1 = "127.0.0.1";
 	private static String IP2 = "123.345.23.123";
-	private static String IP3 = "123.abc.23.123";
 
 	//addresses
 	private static String ADDRESS1 = "2345 Nulla St";
@@ -78,9 +75,10 @@ public class TestDefaultFinders {
 	private static String URL1 = "https://www.dataApps.io";
 	
 	private static String IPV6_1 = "2001:db8:a0b:12f0::1";
-
 	
-	public static String[] FINDERNAMES = new String[] {"Email", "Credit Card", "US Phone#Formatted", "IPV4", "Street Address", "SSN-dashes" , "SSN-spaces" };
+	public static String[] FINDERNAMES = new String[] {"Email", 
+		"CreditCard", "USPhone-Formatted", "IPV4", "StreetAddress", 
+		"SSN-dashes" , "SSN-spaces", "Hostname", "IPV6"};
 
 	private static String[] testStrings = new String[] { 
 			EMAIL1, EMAIL2, EMAIL3, EMAIL4, 
@@ -98,12 +96,12 @@ public class TestDefaultFinders {
 
 	private static String[] testStringTypes = new String[] { 
 			"Email", "Email", "Email", "Email", 
-			"Credit Card", "Credit Card", 
-			"Credit Card", "Credit Card", "Credit Card", "Credit Card", "Credit Card",
-			"Credit Card", "Credit Card", "Credit Card", "Credit Card", "Credit Card", "Credit Card",
-			"US Phone#Formatted", "US Phone#Formatted", 
+			"CreditCard", "CreditCard", 
+			"CreditCard", "CreditCard", "CreditCard", "CreditCard", "CreditCard",
+			"CreditCard", "CreditCard", "CreditCard", "CreditCard", "CreditCard", "CreditCard",
+			"USPhone-Formatted", "USPhone-Formatted", 
 			"IPV4", "IPV4",
-			"Street Address", "Street Address",
+			"StreetAddress", "StreetAddress",
 			"SSN-dashes","SSN-spaces",
 			"ZipCode",
 			"URL",
@@ -111,7 +109,7 @@ public class TestDefaultFinders {
 			
 	};
 
-	private static String[] testBadStrings = new String[] {USPHONE3, USPHONE4, IP3, ADDRESS3};
+	private static String[] testBadStrings = new String[] {USPHONE3, USPHONE4, ADDRESS3};
 
 	private static String PLAIN_TEXT = "text containing no sensitive elements";
 	
@@ -142,21 +140,14 @@ public class TestDefaultFinders {
 
 	@Test 
 	public void testMatch() {
+		FinderEngine engine = new FinderEngine((List<Finder>)null, true, true);
 		for (String str: testStrings) {
-			FinderEngine engine = new FinderEngine((List<Finder>)null, true, true);
 			List<String> results = engine.find(TEXT_PART1 + str + TEXT_PART2);
 			if (results.size() > 1)  {
-				// This is an error condition, Print some helpful information on what happened
-				Map<String, List<String>> matchesByType = engine.findWithType(TEXT_PART1 + str + TEXT_PART2);
-				for (Map.Entry<String, List<String>> entry : matchesByType.entrySet()) {
-					System.out.println("Finder Name:"+ entry.getKey());
-					for (String value: entry.getValue()) {
-						System.out.println("Value:"+ value);
-					}
-				}
+				
 			}
-			assertEquals (str + " is not found. ", 1, results.size());
-			assertEquals(str, results.get(0));
+			assertTrue (results.size()>0);
+			assertTrue(results.contains(str));
 		}
 	}
 
@@ -190,13 +181,20 @@ public class TestDefaultFinders {
 						System.out.println("Value:"+ value);
 					}
 				}
-			}
-			assertEquals (str + " is not found. ", 1, results.size());
+			};
+			assertTrue (results.size()>0);
+			String expectedType = testStringTypes[i++];
 			String actualType = null;
 			for (Map.Entry<String, List<String>> entry : results.entrySet()) {
-				actualType = entry.getKey();
+				if (expectedType.equals(entry.getKey())) {
+					actualType = entry.getKey();
+					break;
+				}
 			}
-			assertEquals (testStringTypes[i++], actualType);
+			if (actualType == null) {
+				System.out.println(expectedType);
+			}
+			assertNotNull(actualType);
 			List<String>  matches = results.get(actualType);
 			if (matches.size() > 1) {
 				for (String value: matches) {
@@ -218,13 +216,13 @@ public class TestDefaultFinders {
 	public void testMultipleEmailsWithCommas () {
 		FinderEngine engine = new FinderEngine();
 		List<String> results = engine.find(multipleEmails);
-		assertEquals (2, results.size());
+		assertTrue (results.size()>=2);
 		assertTrue(results.contains(EMAIL1));
 		assertTrue(results.contains(EMAIL2));
 	}
 	
 	@Test 
-	public void testMultipleCreditCardssWithCommas () {
+	public void testMultipleCreditCardsWithCommas () {
 		FinderEngine engine = new FinderEngine();
 		List<String> results = engine.find(multipleCreditCards);
 		assertEquals (2, results.size());

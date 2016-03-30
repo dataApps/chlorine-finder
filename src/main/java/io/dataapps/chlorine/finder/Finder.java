@@ -47,5 +47,5 @@ public interface Finder {
    * @return List of sensitive values
    */
   public List<String> find(String input);
-
+    
 }

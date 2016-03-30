@@ -32,8 +32,8 @@ public class CompositeCreditCardFinder implements Finder {
 	 *
 	 */
 	public CompositeCreditCardFinder () {
-		compositeFinder = new CompositeFinder("Credit Card");
-		String START_BLOCK = "([^\\d\\.-]|^)"; 
+		compositeFinder = new CompositeFinder("CreditCard");
+		String START_BLOCK = "([^\\d\\.-]|^)";
 		compositeFinder.add(new CreditCardFinder("Mastercard", START_BLOCK + "5[1-5][0-9]{2}(\\ |\\-|)[0-9]{4}(\\ |\\-|)[0-9]{4}(\\ |\\-|)[0-9]{4}(\\D|$)"));
 		compositeFinder.add(new CreditCardFinder("Visa", START_BLOCK + "4[0-9]{3}(\\ |\\-|)[0-9]{4}(\\ |\\-|)[0-9]{4}(\\ |\\-|)[0-9]{4}(\\D|$)"));
 		compositeFinder.add(new CreditCardFinder("AMEX", START_BLOCK + "(34|37)[0-9]{2}(\\ |\\-|)[0-9]{6}(\\ |\\-|)[0-9]{5}(\\D|$)"));

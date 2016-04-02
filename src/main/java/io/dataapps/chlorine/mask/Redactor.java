@@ -16,23 +16,34 @@ import org.apache.commons.logging.LogFactory;
 public class Redactor implements Masker {
 	private static final Log LOG = LogFactory.getLog(Redactor.class);
 
-	Map<String,String> replacements = new HashMap<>();
+	Map<String,String> replacements ;
 	FinderEngine engine;
-
-	public void init(FinderEngine engine, String configurationFileName) {
+	
+	public void init(FinderEngine engine, Map<String,String> replacements) {
 		this.engine = engine;
+		this.replacements = replacements;
+	}
+
+	public void init(FinderEngine engine, String configurationFileName ) {
+		init(engine, readReplacements(configurationFileName));
+	}
+
+	private static Map<String,String> readReplacements(String configurationFileName) {
 		Properties properties =new Properties();
+		Map<String,String> map = new HashMap<>();
 		try (final InputStream stream =
 				MaskFactory.class.getClassLoader().
 				getResourceAsStream(configurationFileName)) {
 			properties.load(stream);	
 			for (final String name: properties.stringPropertyNames()) {
-				replacements.put(name, properties.getProperty(name));	
+				map.put(name, properties.getProperty(name));	
 			}
 		}catch (IOException e) {
 			LOG.error(e);
 		}
+		return map;
 	}
+	
 	@Override
 	public String mask(String input) {
 		String temp = input;
@@ -52,4 +63,19 @@ public class Redactor implements Masker {
 		}
 		return temp;
 	}
+	
+	public Map<String, String> getReplacements() {
+		return replacements;
+	}
+	public void setReplacements(Map<String, String> replacements) {
+		this.replacements = replacements;
+	}
+	public FinderEngine getEngine() {
+		return engine;
+	}
+	public void setEngine(FinderEngine engine) {
+		this.engine = engine;
+	}
+	
+	
 }

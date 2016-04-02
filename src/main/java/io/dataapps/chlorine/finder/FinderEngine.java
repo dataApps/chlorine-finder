@@ -188,7 +188,7 @@ public class FinderEngine extends CompositeFinder {
 	 * If ignoreEnabledFlag is true, includes all disabled Finders too. This is used for testing.
 	 * 
 	 */
-	 FinderEngine(List<Finder> finders, boolean addDefaultFinders, boolean ignoreEnabledFlag) {
+	 public FinderEngine(List<Finder> finders, boolean addDefaultFinders, boolean ignoreEnabledFlag) {
 		super("FinderEngine");
 		List<Finder> list = new ArrayList<>();
 		if (finders != null) {

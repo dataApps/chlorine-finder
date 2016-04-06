@@ -43,6 +43,11 @@ The latest chlorine-finder library can be downloaded [here](https://dataapps.io/
 [chlorine-finder wiki](https://github.com/dataApps/chlorine-finder/wiki)
   
 ###Related projects
+
+* [Online Redactor](https://dataApps.io/redact.html) -  Masks sensitive elements from the input text. Users can customize the rules.
+* [Chlorine-hadoop](https://github.com/dataApps/chlorine-hadoop) -  detect and mask sensitive elements in Hadoop Clusters.
+* [Chlorine-hive](https://github.com/dataApps/chlorine-hive) -  detect and mask sensitive elements in Hive tables.
+
  
 ###Java Docs
 The java docs for chlorine-finder are available [here](https://dataApps.io/files/chlorine-finder/javadoc/index.html).

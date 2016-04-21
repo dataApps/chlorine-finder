@@ -17,6 +17,8 @@ package io.dataapps.chlorine.mask;
 
 import io.dataapps.chlorine.finder.Finder;
 import io.dataapps.chlorine.finder.FinderEngine;
+import io.dataapps.chlorine.finder.FinderResult;
+import io.dataapps.chlorine.pattern.FinderUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,17 +45,18 @@ public class Redactor implements Masker {
 
 	Map<String,String> replacements ;
 	FinderEngine engine;
-	
+
 	public void init(FinderEngine engine, Map<String,String> replacements) {
 		this.engine = engine;
 		this.replacements = replacements;
 	}
 
-	public void init(FinderEngine engine, String configurationFileName ) {
+	public void init(FinderEngine engine, String configurationFileName) {
 		init(engine, readReplacements(configurationFileName));
 	}
 
-	private static Map<String,String> readReplacements(String configurationFileName) {
+	private static Map<String,String> readReplacements
+	(String configurationFileName) {
 		Properties properties =new Properties();
 		Map<String,String> map = new HashMap<>();
 		try (final InputStream stream =
@@ -68,27 +71,24 @@ public class Redactor implements Masker {
 		}
 		return map;
 	}
-	
+
 	@Override
 	public String mask(String input) {
 		String temp = input;
+		String masked = input;
 		List<Finder> finders = engine.getFinders();
 		for (Finder finder:finders) {
 			String replacement = replacements.get(finder.getName());
 			if (replacement != null) {
-				if (finder instanceof Replacer) {
-					temp = ((Replacer)finder).replace(temp, replacement);
-				} else {
-					List<String> values = finder.find(temp);
-					for (String value:values) {
-						temp = temp.replaceAll(value, replacement);
-					}
-				}
+				FinderResult result = finder.find(temp);
+				masked = FinderUtil.replaceMatches(
+						masked, result.getMatches(), replacement);
+				temp = result.getMatchesRemoved();
 			}
 		}
-		return temp;
+		return masked;
 	}
-	
+
 	public Map<String, String> getReplacements() {
 		return replacements;
 	}
@@ -101,6 +101,6 @@ public class Redactor implements Masker {
 	public void setEngine(FinderEngine engine) {
 		this.engine = engine;
 	}
-	
-	
+
+
 }

@@ -56,26 +56,27 @@
 		<enabled>true</enabled>
 	</finder>
 	<finder>
+		<name>URL</name>
+		<pattern><![CDATA[\b((https?|ftp|file)://|(www|ftp)\.)[-A-Z0-9+&@#/%?=~_|$!:,.;]*[A-Z0-9+&@#/%=~_|]\b]]>
+		</pattern>
+		<enabled>false</enabled>
+	</finder>
+	<finder>
 		<name>Hostname</name>
 		<pattern>\b(([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])\.)+([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])\b
 		</pattern>
 		<enabled>true</enabled>
 	</finder>
 	<finder>
-		<name>URL</name>
-		<pattern><![CDATA[\b((https?|ftp|file)://|(www|ftp)\.)[-A-Z0-9+&@#/%?=~_|$!:,.;]*[A-Z0-9+&@#/%=~_|]\b]]>
-		</pattern>
-		<enabled>false</enabled>
-	</finder>
-		<finder>
 		<name>ZipCode</name>
 		<pattern>\b[0-9]{5}(?:-[0-9]{4})?\b</pattern>
 		<enabled>false</enabled>
 	</finder>
-		<finder>
+	<finder>
 		<name>UKPhoneNumber</name>
-		<pattern>^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$</pattern>
+		<pattern>^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$
+		</pattern>
 		<enabled>false</enabled>
 	</finder>
-	
+
 </finders>

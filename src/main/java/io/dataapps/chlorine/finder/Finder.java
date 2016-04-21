@@ -15,8 +15,6 @@
  */
 package io.dataapps.chlorine.finder;
 
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Interface for Finders
@@ -33,19 +31,11 @@ public interface Finder {
   public String getName();
   
   /**
-   * Accepts a collection of input values and 
-   * returns a List of sensitive values found in the inputs.
-   * @param inputs - collection of inputs to be scanned.
-   * @return List of sensitive values
-   */
-  public List<String> find(Collection<String> inputs);
-  
-  /**
    * Accepts an input value and 
    * returns a collection of sensitive values found in the inputs.
    * @param input - String to be scanned.
    * @return List of sensitive values
    */
-  public List<String> find(String input);
+  public FinderResult find(String input);
     
 }

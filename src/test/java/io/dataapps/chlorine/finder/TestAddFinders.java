@@ -38,16 +38,7 @@ public class TestAddFinders {
 		}
 
 		@Override
-		public List<String> find(Collection<String> inputs) {
-			List<String> zipsFound = new ArrayList<>();
-			for (String input:inputs) {
-				zipsFound.addAll(find(input));
-			}
-			return zipsFound;
-		}
-
-		@Override
-		public List<String> find(String input) {
+		public FinderResult find(String input) {
 			List<String> zipsFound = new ArrayList<>();
 			if (input.contains("95050")) {
 				zipsFound.add ("95050");
@@ -58,7 +49,7 @@ public class TestAddFinders {
 			if (input.contains("95054")) {
 				zipsFound.add ("95054");
 			}
-			return zipsFound;
+			return new FinderResult (zipsFound,input.replaceAll("(95050|95051|95054)", ""));
 		}
 	}
 	
@@ -87,13 +78,13 @@ public class TestAddFinders {
 		Finder scFinder = new SantaClaraZipCodeFinder();
 		engine.add(scFinder);
 		
-		List<String> matches = engine.find(TEXT_PART1 + "b@b.com" + TEXT_PART2);
-		assertTrue(matches.size()>1);
+		List<String> matches = engine.find(TEXT_PART1 + "b@b.com" + TEXT_PART2).getMatches();
+		assertTrue(matches.size()==1);
 		assertEquals("b@b.com", matches.get(0));
-		matches = engine.find(TEXT_PART1 + "95050" + TEXT_PART2);
+		matches = engine.find(TEXT_PART1 + "95050" + TEXT_PART2).getMatches();
 		assertEquals(1, matches.size());
 		assertEquals("95050", matches.get(0));
-		matches = engine.find(TEXT_PART1 + "94090" + TEXT_PART2);
+		matches = engine.find(TEXT_PART1 + "94090" + TEXT_PART2).getMatches();
 		assertEquals(0, matches.size());
 
 		Map<String, List<String>> matchesByType = engine.findWithType(TEXT_PART1 + "95050" + TEXT_PART2);
@@ -112,20 +103,20 @@ public class TestAddFinders {
 		
 		FinderEngine engine = new FinderEngine(lstFinders, false);
 		
-		List<String> matches = engine.find(TEXT_PART1 + "b@b.com" + TEXT_PART2);
+		List<String> matches = engine.find(TEXT_PART1 + "b@b.com" + TEXT_PART2).getMatches();
 		assertEquals(0, matches.size());
 		
-		matches = engine.find(TEXT_PART1 + "95050" + TEXT_PART2);
+		matches = engine.find(TEXT_PART1 + "95050" + TEXT_PART2).getMatches();
 		assertEquals(1, matches.size());
 		assertEquals("95050", matches.get(0));
-		matches = engine.find(TEXT_PART1 + "94090" + TEXT_PART2);
+		matches = engine.find(TEXT_PART1 + "94090" + TEXT_PART2).getMatches();
 		assertEquals(0, matches.size());
 
 		Map<String, List<String>> matchesByType = engine.findWithType(TEXT_PART1 + "95050" + TEXT_PART2);
 		assertEquals(1, matchesByType.size());
 		matchesByType.containsKey(scFinder.getName());
 		
-		matches = engine.find(TEXT_PART1 + "public" + TEXT_PART2);
+		matches = engine.find(TEXT_PART1 + "public" + TEXT_PART2).getMatches();
 		assertEquals(1, matches.size());
 		assertEquals("public", matches.get(0));
 
@@ -139,20 +130,20 @@ public class TestAddFinders {
 		
 		FinderEngine engine = new FinderEngine(new DummyFinderProvider() , false);
 		
-		List<String> matches = engine.find(TEXT_PART1 + "b@b.com" + TEXT_PART2);
+		List<String> matches = engine.find(TEXT_PART1 + "b@b.com" + TEXT_PART2).getMatches();
 		assertEquals(0, matches.size());
 		
-		matches = engine.find(TEXT_PART1 + "95050" + TEXT_PART2);
+		matches = engine.find(TEXT_PART1 + "95050" + TEXT_PART2).getMatches();
 		assertEquals(1, matches.size());
 		assertEquals("95050", matches.get(0));
-		matches = engine.find(TEXT_PART1 + "94090" + TEXT_PART2);
+		matches = engine.find(TEXT_PART1 + "94090" + TEXT_PART2).getMatches();
 		assertEquals(0, matches.size());
 
 		Map<String, List<String>> matchesByType = engine.findWithType(TEXT_PART1 + "95050" + TEXT_PART2);
 		assertEquals(1, matchesByType.size());
 		matchesByType.containsKey("Santa Clara ZipCode");
 		
-		matches = engine.find(TEXT_PART1 + "public" + TEXT_PART2);
+		matches = engine.find(TEXT_PART1 + "public" + TEXT_PART2).getMatches();
 		assertEquals(1, matches.size());
 		assertEquals("public", matches.get(0));
 

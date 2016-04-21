@@ -17,10 +17,9 @@ package io.dataapps.chlorine.pattern;
 
 
 import io.dataapps.chlorine.finder.Finder;
-import io.dataapps.chlorine.mask.Replacer;
+import io.dataapps.chlorine.finder.FinderResult;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +27,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class RegexFinder implements Finder, Replacer {
+public class RegexFinder implements Finder {
 	static final Log LOG = LogFactory.getLog(RegexFinder.class);
 	public static final int DEFAULT_FLAGS = 
 			Pattern.CANON_EQ | Pattern.CASE_INSENSITIVE | Pattern.MULTILINE;
@@ -89,31 +88,19 @@ public class RegexFinder implements Finder, Replacer {
 	}
 
 	/**
-	 * Scan the input using the pattern.
-	 * Return a list of actual matched values.
-	 * @return a list of matches 
-	 */
-	public List<String> find( Collection<String> inputs) {
-		List<String> matches = new ArrayList<>();
-		for (String input : inputs) {
-			matches.addAll(find (input));
-		}
-		return matches;
-	}
-
-	/**
 	 * Scan the list of inputs using the finders.
 	 * Return a list of actual matched values.
 	 * @return a list of matches 
 	 */
-	public List<String> find(String input) {
+	public FinderResult find(String input) {
 		List<String> matches = new ArrayList<>();
 		Matcher matcher = pattern.matcher(input);
 		while (matcher.find()) {
 			matches.add(input.substring(matcher.start(), matcher.end()));
 		}
-		return matches;
+		return new FinderResult(matches, replace(input,""));
 	}
+	
 
 	static String removeCommas(String match) {
 		if (match.endsWith(",")) {
@@ -125,8 +112,7 @@ public class RegexFinder implements Finder, Replacer {
 		return match;
 	}
 
-	@Override
-	public String replace(String input, String replacement) {
+	private String replace(String input, String replacement) {
 		Matcher matcher = pattern.matcher(input);
 		return matcher.replaceAll(replacement);
 	}

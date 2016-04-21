@@ -15,8 +15,9 @@
  */
 package io.dataapps.chlorine.pattern;
 
+import io.dataapps.chlorine.finder.FinderResult;
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -26,27 +27,19 @@ public class CreditCardFinder extends RegexFinder {
 	}
 
 	@Override
-	public List<String> find(Collection<String> samples) {
+	public FinderResult find(String input) {
 		List<String> matches = new ArrayList<>();
-		for (String sample : samples) {
-			matches.addAll(find(sample));
-		}
-		return matches;
-	}
-
-	@Override
-	public List<String> find(String sample) {
-		List<String> matches = new ArrayList<>();
-		Matcher matcher = pattern.matcher(sample);
+		Matcher matcher = pattern.matcher(input);
 		while (matcher.find()) {
 
-			String match = sample.substring(matcher.start()+1, matcher.end()-1);
+			String match = input.substring(matcher.start()+1, matcher.end()-1);
 
 			if (postMatchCheck(match)) {
 				matches.add(match);
 			}
 		}
-		return matches;
+		return new FinderResult(matches, 
+				FinderUtil.removeMatches(input, matches));
 	}
 
 

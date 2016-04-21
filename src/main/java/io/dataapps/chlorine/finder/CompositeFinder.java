@@ -84,25 +84,15 @@ public class CompositeFinder implements Finder {
 	 * Return a list of actual matched values.
 	 * @return a list of matches 
 	 */
-	public List<String> find(String input) {
+	public FinderResult find(String input) {
 		List<String> list = new ArrayList<>();
+		String temp = input;
 		for (Finder finder : finders) {
-			list.addAll(finder.find(input));
+			FinderResult result = finder.find(temp);
+			list.addAll(result.getMatches());
+			temp = result.getMatchesRemoved();
 		}
-		return list;
-	}
-
-	/**
-	 * Scan the list of inputs using the finders.
-	 * Return a list of actual matched values.
-	 * @return a list of matches 
-	 */
-	public List<String> find(Collection<String> inputs) {
-		List<String> list = new ArrayList<>();
-		for (Finder finder : finders) {
-			list.addAll(finder.find(inputs));
-		}
-		return list;
+		return new FinderResult(list, temp);
 	}
 
 	/**
@@ -112,23 +102,12 @@ public class CompositeFinder implements Finder {
 	 */
 	public Map<String, List<String>> findWithType(String input) {
 		Map<String, List<String>> map = new HashMap<>();
+		String temp = input;
 		for (Finder finder : finders) {
-			List<String> matches = finder.find(input);
-			addToMap(map, finder, matches);
-		}
-		return map;
-	}
+			FinderResult result = finder.find(temp);
+			addToMap(map, finder, result.getMatches());
+			temp = result.getMatchesRemoved();
 
-	/**
-	 * Scan the list of inputs using the finders.
-	 * Return a map of finder to actual matched values.
-	 * @return a map of finder to the corresponding matches. 
-	 */
-	public Map<String, List<String>> findWithType(List<String> inputs) {
-		Map<String, List<String>> map = new HashMap<>();
-		for (Finder finder : finders) {
-			List<String> matches = finder.find(inputs);
-			addToMap(map, finder, matches);
 		}
 		return map;
 	}

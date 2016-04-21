@@ -15,7 +15,9 @@
 	<version>1.1.6-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Chlorine Finder Library</name>
-	<description>Chlorine-finder is an open source library to detect sensitive elements in text</description>
+	<description>Chlorine-finder is an open source library to detect
+		sensitive elements in text
+	</description>
 	<url>https://github.com/dataApps/chlorine-finder</url>
 	<licenses>
 		<license>
@@ -32,8 +34,10 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>https://github.com/dataApps/chlorine-finder.git</connection>
-		<developerConnection>https://github.com/dataApps/chlorine-finder.git</developerConnection>
+		<connection>https://github.com/dataApps/chlorine-finder.git
+		</connection>
+		<developerConnection>https://github.com/dataApps/chlorine-finder.git
+		</developerConnection>
 		<url>https://github.com/dataApps/chlorine-finder.git</url>
 	</scm>
 

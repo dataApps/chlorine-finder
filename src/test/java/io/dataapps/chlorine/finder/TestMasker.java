@@ -17,6 +17,7 @@ package io.dataapps.chlorine.finder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import io.dataapps.chlorine.mask.MaskFactory;
 import io.dataapps.chlorine.mask.Masker;
 
@@ -102,9 +103,10 @@ public class TestMasker {
 		for (String str: testStrings) {
 			String input = TEXT_PART1 + str + TEXT_PART2;
 			String result = masker.mask(input);
-			List<String> elements = engine.find(input);
+			List<String> elements = engine.find(input).getMatches();
+			assertEquals (1,elements.size());
 			for (String element:elements) {
-				assertFalse(result.contains(element));
+				assertFalse("element=" +element + ", str=" +str,result.contains(element));
 			}
 		}
 	}

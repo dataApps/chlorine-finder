@@ -15,11 +15,9 @@
  */
 package io.dataapps.chlorine.pattern;
 
-import java.util.Collection;
-import java.util.List;
-
 import io.dataapps.chlorine.finder.CompositeFinder;
 import io.dataapps.chlorine.finder.Finder;
+import io.dataapps.chlorine.finder.FinderResult;
 
 public class CompositeCreditCardFinder implements Finder {
 
@@ -45,12 +43,7 @@ public class CompositeCreditCardFinder implements Finder {
 	}
 
 	@Override
-	public List<String> find(Collection<String> samples) {
-		return compositeFinder.find(samples);
-	}
-
-	@Override
-	public List<String> find(String sample) {
+	public FinderResult find(String sample) {
 		return compositeFinder.find(sample);
 	}
 

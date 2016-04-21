@@ -13,14 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.dataapps.chlorine.mask;
+package io.dataapps.chlorine.finder;
 
-/**
- * Interface for objects which supports a replacement operation 
- *
- */
-public interface Replacer {
+import java.util.List;
+
+public class FinderResult {
 	
-	String replace (String input, String replacement);
-
+	List<String> matches;
+	String matchesRemoved;
+	
+	public FinderResult() {}
+	
+	public FinderResult (List<String> matches, String matchesRemoved) {
+		this.matches = matches;
+		this.matchesRemoved = matchesRemoved;
+	}
+	public List<String> getMatches() {
+		return matches;
+	}
+	public void setMatches(List<String> matches) {
+		this.matches = matches;
+	}
+	public String getMatchesRemoved() {
+		return matchesRemoved;
+	}
+	public void setMatchesRemoved(String matchesRemoved) {
+		this.matchesRemoved = matchesRemoved;
+	}
 }

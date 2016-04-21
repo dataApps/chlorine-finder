@@ -142,12 +142,9 @@ public class TestDefaultFinders {
 	public void testMatch() {
 		FinderEngine engine = new FinderEngine((List<Finder>)null, true, true);
 		for (String str: testStrings) {
-			List<String> results = engine.find(TEXT_PART1 + str + TEXT_PART2);
-			if (results.size() > 1)  {
-				
-			}
-			assertTrue (results.size()>0);
-			assertTrue(results.contains(str));
+			List<String> results = engine.find(TEXT_PART1 + str + TEXT_PART2).getMatches();
+			assertEquals (1, results.size());
+			assertEquals(str, results.get(0));
 		}
 	}
 
@@ -155,7 +152,7 @@ public class TestDefaultFinders {
 	public void testNonMatch() {
 		for (String str: testBadStrings) {
 			FinderEngine engine = new FinderEngine();
-			List<String> results = engine.find(TEXT_PART1 + str + TEXT_PART2);
+			List<String> results = engine.find(TEXT_PART1 + str + TEXT_PART2).getMatches();
 			assertEquals (str + " is  found. ", 0, results.size());
 		}
 	}
@@ -163,7 +160,7 @@ public class TestDefaultFinders {
 	@Test
 	public void testNoMatch () {
 		FinderEngine engine = new FinderEngine();
-		List<String> emails = engine.find(PLAIN_TEXT);
+		List<String> emails = engine.find(PLAIN_TEXT).getMatches();
 		assertTrue (emails.isEmpty());
 	}
 
@@ -208,14 +205,14 @@ public class TestDefaultFinders {
 	@Test 
 	public void testDisabledFinders () {
 		FinderEngine engine = new FinderEngine();
-		List<String> results = engine.find(TEXT_PART1 + ZIP1);
+		List<String> results = engine.find(TEXT_PART1 + ZIP1).getMatches();
 		assertEquals (ZIP1 + " is  found. ", 0, results.size());
 	}
 	
 	@Test 
 	public void testMultipleEmailsWithCommas () {
 		FinderEngine engine = new FinderEngine();
-		List<String> results = engine.find(multipleEmails);
+		List<String> results = engine.find(multipleEmails).getMatches();
 		assertTrue (results.size()>=2);
 		assertTrue(results.contains(EMAIL1));
 		assertTrue(results.contains(EMAIL2));
@@ -224,7 +221,7 @@ public class TestDefaultFinders {
 	@Test 
 	public void testMultipleCreditCardsWithCommas () {
 		FinderEngine engine = new FinderEngine();
-		List<String> results = engine.find(multipleCreditCards);
+		List<String> results = engine.find(multipleCreditCards).getMatches();
 		assertEquals (2, results.size());
 		assertTrue(results.contains(MASTERCARD2));
 		assertTrue(results.contains(AMEXCARD1));
